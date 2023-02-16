@@ -1,5 +1,15 @@
 console.log("sup webscraping started")
 
+
+class Project {
+    constructor(name, description, language, lastUpdate) {
+      this.name = name;
+      this.description = description;
+      this.language = language;
+      this.lastUpdate = lastUpdate;
+    }
+  }
+
 // importing cheerio and axios
 const cheerio = require("cheerio")
 const axios = require("axios")
@@ -22,22 +32,22 @@ async function performWebscraping(){
     const $ = cheerio.load(axiosResponse.data)
 
     //intialize the datastructure containing the information of the product.
+    let projectNumber = $("div").find("a.UnderlineNav-item.js-responsive-underlinenav-item.js-selected-navigation-item.selected > span").text()
+    console.log(`there are a total of ${projectNumber} projects in juan's repository`)
 
-    let projects = {}
-
-    repositoryList = $(".position-relative").find("#user-repositories-list").each((index,element) => {
-        project = [] // array[ name, description, language]
-        const name = $(element).find("a").text()
-        const description = []
-        const language = []
-
-        project.push(name)
-        project.push(description)
-        project.push(language)
-        projects[index] = project
+   
+    let projectList = []
+    repositoryList = $("#user-profile-frame").find("#user-repositories-list").each((index,element) => {
+        const name = $(element).find("h3 > a").text().trim().split("\n")
+        const description = $(element).find("div:nth-child(2) > p").text().split("\n")
+        const language = $(element).find("div.f6.color-fg-muted.mt-2 > span").text().split("\n")
+        const lastUpdate = $(element).find().text().split("\n")
+        // parsing the input.
+        // for(let i = 0)
+        project = new Project(name,description,language,lastUpdate)
+        projectList.push(project)
     })
-
-    console.log(projects)
+    console.log(projectList)
 }
 // Note that you can use await only in functions marked with async. 
 // This is why you have to embed your JavaScript web scraping logic in the async performScraping() function.

@@ -8,7 +8,7 @@ async function performWebscraping(){
     // downloading the target web page by performing an HTTP GET request in Axios
     const axiosResponse = await axios.request({
         method: "GET",
-        url: "",
+        url: "https://github.com/jjosegomez?tab=repositories",
 
     // By default, Axios will use the following User-Agent: axios <axios_version>
     // This is not what the User-Agent used by a browser looks like. So, anti-scraping technologies may detect and block your Node.js web scraper.
@@ -23,11 +23,21 @@ async function performWebscraping(){
 
     //intialize the datastructure containing the information of the product.
 
-    let projects = {
-        0:["name", "description", "programming languages", "img"]
-    }
-    
-    console.log($)
+    let projects = {}
+
+    repositoryList = $(".position-relative").find("#user-repositories-list").each((index,element) => {
+        project = [] // array[ name, description, language]
+        const name = $(element).find("a").text()
+        const description = []
+        const language = []
+
+        project.push(name)
+        project.push(description)
+        project.push(language)
+        projects[index] = project
+    })
+
+    console.log(projects)
 }
 // Note that you can use await only in functions marked with async. 
 // This is why you have to embed your JavaScript web scraping logic in the async performScraping() function.

@@ -53,6 +53,7 @@ async function getProjectArray() {
         console.log(count)
     })
     console.log(projectList)
+    
     return projectList
 }
 // Note that you can use await only in functions marked with async. 

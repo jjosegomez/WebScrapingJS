@@ -38,9 +38,6 @@ async function getProjectArray() {
         const $ = cheerio.load(response.data)
 
         //intialize the datastructure containing the information of the product.
-        let projectNumber = $("div").find("a.UnderlineNav-item.js-responsive-underlinenav-item.js-selected-navigation-item.selected > span").text()
-        console.log(`there are a total of ${projectNumber} projects in juan's repository`)
-
         let count = 0
         repositoryList = $("#user-repositories-list > ul > li").each((index, element) => {
             const name = $(element).find("h3 > a").text().trim()

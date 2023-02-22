@@ -44,8 +44,6 @@ async function getProjectArray() {
             const description = $(element).find("div:nth-child(2) > p").text().trim()
             const language = $(element).find("div.f6.color-fg-muted.mt-2 > span").text().trim()
             const lastUpdate = $(element).find("div.f6.color-fg-muted.mt-2 > relative-time").text().trim()
-            // parsing the input.
-            // for(let i = 0)
             project = new Project(name, description, language, lastUpdate)
             projectList.push(project)
             count++
@@ -53,7 +51,7 @@ async function getProjectArray() {
         console.log(count)
     })
     console.log(projectList)
-    
+
     return projectList
 }
 // Note that you can use await only in functions marked with async. 

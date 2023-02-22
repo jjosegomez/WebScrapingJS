@@ -16,7 +16,7 @@ async function performWebscraping(){
     // Set a valid User-Agent header in Axios by adding the following attribute to the object passed to request():
         headers: {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
-    }
+        }
     })
 
     // parsing the HTML source of the target web page with Cheerio
